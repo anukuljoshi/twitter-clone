@@ -6,11 +6,3 @@ class TweetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tweet
         fields = '__all__'
-
-
-# class TweetCreateSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Tweet
-#         fields = [
-#             'content'
-#         ]

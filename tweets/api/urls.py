@@ -8,6 +8,6 @@ from .views import (
 
 urlpatterns = [
     path('', api_tweet_list_view),
-    path('tweets/<int:id>/', api_tweet_detail_view),
-    path('tweets/create/', api_tweet_create_view)
+    path('<int:id>/', api_tweet_detail_view),
+    path('create/', api_tweet_create_view)
 ]

@@ -6,7 +6,7 @@ User = get_user_model()
 
 class Tweet(models.Model):
     content = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tweets')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_tweets')
     liked_by = models.ManyToManyField(User, related_name='liked_tweets', blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -9,6 +8,7 @@ from tweets.models import Tweet
 from .serializers import TweetSerializer
 
 User = get_user_model()
+
 
 @api_view()
 def api_tweet_list_view(request, *args, **kwargs):
@@ -32,5 +32,7 @@ def api_tweet_create_view(request, *args, **kwargs):
     request.data['author'] = request.user.id
     if(serializer.is_valid(raise_exception=True)):
         serializer.save()
-        return Response({'message' : 'tweet created'}, status.HTTP_201_CREATED)
+        return Response({"message" : "tweet created"}, status.HTTP_201_CREATED)
     return Response({"message" : serializer.error_messages}, status.HTTP_400_BAD_REQUEST)
+
+

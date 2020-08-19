@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     # created
     'tweets',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -99,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -107,8 +108,22 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATETIME_FORMAT = '%b %d, %Y, %H:%M'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# rest framework
+
+REST_FRAMEWORK = {
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     'rest_framework.renderers.JSONRenderer',
+    # ],
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework.parsers.JSONParser',
+    # ],
+    'DATETIME_FORMAT' : '%b %d %Y, %H:%M'
+}
