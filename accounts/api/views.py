@@ -12,15 +12,20 @@ from .serializers import UserSerializer, ProfileSerializer
 User = get_user_model()
 
 
+@api_view(['GET'])
+def api_current_user(request, *args, **kwargs):
+    user = request.user
+    serializer = UserSerializer(user)
+    return Response(serializer.data, status.HTTP_200_OK)
 
-@api_view()
+@api_view(['GET'])
 def api_user_profile_list_view(request, *args, **kwargs):
     profile_list = Profile.objects.all()
     serializer = ProfileSerializer(profile_list, many=True)
     return Response(serializer.data, status.HTTP_200_OK)
 
 
-@api_view()
+@api_view(['GET'])
 def api_user_profile_detail_view(request, username, *args, **kwargs):
     user = User.objects.filter(username=username).first()
     if(user):
@@ -31,7 +36,7 @@ def api_user_profile_detail_view(request, username, *args, **kwargs):
     return Response({'message' : 'Not Found'}, status.HTTP_404_NOT_FOUND)
 
 
-@api_view()
+@api_view(['GET'])
 def api_user_tweet_list_view(request, username, *args, **kwargs):
     user = User.objects.filter(username=username).first()
     if(user):
@@ -42,7 +47,7 @@ def api_user_tweet_list_view(request, username, *args, **kwargs):
     return Response({}, status.HTTP_404_NOT_FOUND)
 
 
-@api_view()
+@api_view(['GET'])
 def api_user_followers_view(request, username, *args, **kwargs):
     profile = Profile.objects.filter(user__username=username).first()
     if(profile):
@@ -52,7 +57,7 @@ def api_user_followers_view(request, username, *args, **kwargs):
     return Response({}, status.HTTP_404_NOT_FOUND)
 
 
-@api_view()
+@api_view(['GET'])
 def api_user_following_view(request, username, *args, **kwargs):
     profile = Profile.objects.filter(user__username=username).first()
     if(profile):
@@ -62,7 +67,7 @@ def api_user_following_view(request, username, *args, **kwargs):
     return Response({}, status.HTTP_404_NOT_FOUND)
 
 
-@api_view()
+@api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
 def api_user_follow_view(request, username, *args, **kwargs):
     profile = Profile.objects.filter(user__username=username).first()
