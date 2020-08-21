@@ -1,13 +1,11 @@
 import React from 'react';
 import { useQuery, useMutation } from 'react-query';
 
-import { apiGETQuery, apiGETMutate, apiPOSTMutate } from './queryLookup';
-import { TweetCreate } from './create';
-// import { TweetDetail } from './detail';
+import { apiGETMutate } from './queryLookup';
 
 const TweetItem = (props) => {
-    const { tweet, user, handleLike } = props;
-    const liked = tweet.liked_by.includes(user.id);
+    const { tweet, userId, handleLike } = props;
+    const liked = tweet.liked_by.includes(parseInt(userId, 10));
     let btnClasses = 'h5 text-secondary';
     if(liked){
         btnClasses = 'h5 text-primary';
@@ -49,7 +47,7 @@ const TweetItem = (props) => {
 
 
 export const TweetList = (props) => {
-    const { tweetList, refetch, user } = props
+    const { tweetList, refetch, username, userId } = props
     const [like_mutate] = useMutation(apiGETMutate, {
         onSuccess : refetch
     });
@@ -65,7 +63,7 @@ export const TweetList = (props) => {
     
 
     const tweetListDiv = tweetList.map(tweet => (
-        <TweetItem key={tweet.id} tweet={tweet} user={user} handleLike={handleLike} />
+        <TweetItem key={tweet.id} tweet={tweet} handleLike={handleLike} userId={userId}/>
     ))
     return (
         <div className="">

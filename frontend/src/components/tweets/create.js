@@ -6,7 +6,7 @@ export const TweetCreate = (props) => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(content.length===0){
+        if(content.trim().length===0){
             alert('Tweet cannot be blank')
         }else{
             handleTweetCreate(content);

@@ -27,6 +27,7 @@ def api_tweet_detail_view(request, id, *args, **kwargs):
 
 
 @api_view(["POST"])
+@permission_classes([permissions.IsAuthenticated])
 def api_tweet_create_view(request, *args, **kwargs):
     create_serializer = TweetCreateSerializer(data=request.data)
     if(create_serializer.is_valid(raise_exception=True)):

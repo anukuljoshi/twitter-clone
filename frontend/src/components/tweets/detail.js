@@ -4,18 +4,15 @@ import { useQuery, useMutation } from 'react-query';
 import { apiGETQuery, apiGETMutate } from './queryLookup';
 
 export const TweetDetail = (props) => {
-
-    // const tweet_id = // get from django 
-    // const user = //get from django
-    const tweet_id = 1;
-    const { data: tweet, refetch, status} = useQuery(['tweetItem', `tweets/${tweet_id}/`], apiGETQuery);
+    const { userId, tweetId } = props //get from django
+    const { data: tweet, refetch, status} = useQuery(['tweetItem', `tweets/${tweetId}/`], apiGETQuery);
     
     const [like_mutate] = useMutation(apiGETMutate, {
         onSuccess : refetch
     });
 
-    const handleLike = async (tweet_id) => {
-        const endpoint = `tweets/${tweet_id}/like/`;
+    const handleLike = async (tweetId) => {
+        const endpoint = `tweets/${tweetId}/like/`;
         try {
             await like_mutate({ endpoint });
         } catch (error) {
@@ -44,8 +41,7 @@ export const TweetDetail = (props) => {
     }
 
     if(status==="success"){
-
-        const liked = tweet.liked_by.includes(1);
+        const liked = tweet.liked_by.includes(parseInt(userId, 10));
         let btnClasses = 'h5 text-secondary';
         if(liked){
             btnClasses = 'h5 text-primary';

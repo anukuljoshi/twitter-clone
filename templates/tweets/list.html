@@ -2,4 +2,6 @@
 
 {% block content %}
     <h1>TweetList</h1>
+    <div id="tweet-list" data-username="{{request.user}}" data-user-id="{{ request.user.id }}">
+    </div>
 {% endblock content %}

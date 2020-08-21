@@ -4,10 +4,10 @@ import { useQuery, useMutation } from 'react-query';
 import { apiGETQuery, apiPOSTMutate } from './queryLookup';
 import { TweetCreate } from './create';
 import { TweetList } from './list';
+import { TweetDetail } from './detail';
 
 export const TweetListComponent = (props) => {
-
-    const { user } = props;
+    const { username, userId } = props;
     const { data : tweetList, status, refetch } = useQuery(['tweetListState', 'tweets/'], apiGETQuery);
 
     const [create_mutate] = useMutation(apiPOSTMutate, {
@@ -49,7 +49,7 @@ export const TweetListComponent = (props) => {
                 <>
                     {/* form to create tweet */}
                     { 
-                        (user.id) && 
+                        (userId) && 
                         <TweetCreate handleTweetCreate={handleTweetCreate}/>
                     }
 
@@ -62,3 +62,10 @@ export const TweetListComponent = (props) => {
     }
 }
 
+export const TweetDetailComponent = (props) => {
+    return (
+        <div className="col-12 col-md-5 offset-md-2">
+            <TweetDetail {...props}/>    
+        </div>
+    )
+}

@@ -5,19 +5,26 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { TweetListComponent } from './components/tweets/components'
-
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById('root')
-);
-
-// const tweetListElement = document.getElementById('tweet-list')
+import { TweetDetailComponent } from './components/tweets/components';
 // ReactDOM.render(
-// 	<TweetListComponent />,
-// 	tweetListElement
-// )
+// 	<React.StrictMode>
+// 		<App />
+// 	</React.StrictMode>,
+// 	document.getElementById('root')
+// );
+
+const tweetListDiv = document.getElementById('tweet-list');
+if(tweetListDiv){
+	const TweetListElement = React.createElement(TweetListComponent, tweetListDiv.dataset)
+	ReactDOM.render(TweetListElement, tweetListDiv)
+}
+
+const tweetDetailDiv = document.getElementById('tweet-detail');
+if(tweetDetailDiv){
+	const TweetDetailElement = React.createElement(TweetDetailComponent, tweetDetailDiv.dataset)
+	ReactDOM.render(TweetDetailElement, tweetDetailDiv)
+}
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
