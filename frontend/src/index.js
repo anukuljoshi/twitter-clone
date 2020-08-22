@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { TweetListComponent } from './components/tweets/components'
 import { TweetDetailComponent } from './components/tweets/components';
+import { UserProfileComponent } from './components/accounts/components';
+
 // ReactDOM.render(
 // 	<React.StrictMode>
 // 		<App />
@@ -23,6 +25,12 @@ const tweetDetailDiv = document.getElementById('tweet-detail');
 if(tweetDetailDiv){
 	const TweetDetailElement = React.createElement(TweetDetailComponent, tweetDetailDiv.dataset)
 	ReactDOM.render(TweetDetailElement, tweetDetailDiv)
+}
+
+const userProfileDiv = document.getElementById('user-profile');
+if(userProfileDiv){
+	const UserProfileElement = React.createElement(UserProfileComponent, userProfileDiv.dataset)
+	ReactDOM.render(UserProfileElement, userProfileDiv)
 }
 
 

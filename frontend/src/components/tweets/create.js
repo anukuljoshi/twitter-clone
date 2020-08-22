@@ -11,6 +11,7 @@ export const TweetCreate = (props) => {
         }else{
             handleTweetCreate(content);
         }
+        setContent('');
     }
 
     return (

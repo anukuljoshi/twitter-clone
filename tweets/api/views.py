@@ -23,7 +23,7 @@ def api_tweet_detail_view(request, id, *args, **kwargs):
     if(qs):
         serializer = TweetSerializer(qs)
         return Response(serializer.data, status.HTTP_200_OK)
-    return Response({}, status.HTTP_400_BAD_REQUEST)
+    return Response({"error_message" : "not found"}, status.HTTP_404_NOT_FOUND)
 
 
 @api_view(["POST"])
@@ -33,8 +33,8 @@ def api_tweet_create_view(request, *args, **kwargs):
     if(create_serializer.is_valid(raise_exception=True)):
         create_serializer.save(author=request.user)
         return Response(create_serializer.data, status.HTTP_201_CREATED)
-    return Response({"message" : create_serializer.error_messages}, status.HTTP_400_BAD_REQUEST)
-
+    return Response({"error_message" : create_serializer.error_messages}, status.HTTP_400_BAD_REQUEST)
+    
 
 @api_view(['GET'])
 @permission_classes([permissions.IsAuthenticated])
@@ -48,4 +48,4 @@ def api_tweet_like_view(request, id, *args, **kwargs):
             tweet.liked_by.add(request.user)
         serializer = TweetSerializer(tweet)
         return Response(serializer.data, status.HTTP_200_OK)
-    return  Response({}, status.HTTP_404_NOT_FOUND)
+    return Response({"error_message" : "not found"}, status.HTTP_404_NOT_FOUND)

@@ -10,7 +10,7 @@
 
             {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{% url 'accounts:profile' request.user.username %}">
                         {{ request.user.username }}
                     </a>
                 </li>

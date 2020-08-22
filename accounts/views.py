@@ -9,9 +9,9 @@ User = get_user_model()
 def register_view(request, *args, **kwargs):
     form = UserCreationForm(data=request.POST or None)
     if(form.is_valid()):
-        username = form.cleaned_data('username')
-        password1 = form.cleaned_data('password1')
-        password2 = form.cleaned_data('password2')
+        username = form.cleaned_data['username']
+        password1 = form.cleaned_data['password1']
+        password2 = form.cleaned_data['password2']
         if(password1==password2):
             password = password1
         user = User.objects.create_user(username=username, password=password)
@@ -38,3 +38,10 @@ def login_view(request, *args, **kwargs):
 def logout_view(request, *args, **kwargs):
     logout(request)
     return redirect(reverse('accounts:login'))
+
+
+def user_profile_view(request, username, *args, **kwargs):
+    context = {
+        'username' : username
+    }
+    return render(request, 'accounts/profile.html', context=context)

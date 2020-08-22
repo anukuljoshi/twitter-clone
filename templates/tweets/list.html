@@ -2,6 +2,12 @@
 
 {% block content %}
     <h1>TweetList</h1>
-    <div id="tweet-list" data-username="{{request.user}}" data-user-id="{{ request.user.id }}">
-    </div>
+    {% if request.user.is_authenticated %}
+        <div id="tweet-list" data-username="{{request.user}}" data-request-user-id="{{ request.user.id }}">
+        </div>
+    {% else %}
+        <a href="{% url 'accounts:login' %}">
+            <h3>Login</h3>
+        </a>
+    {% endif %}
 {% endblock content %}

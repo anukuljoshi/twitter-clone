@@ -20,7 +20,7 @@ class Profile(models.Model):
         ('F', 'Female'),
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    bio = models.CharField(max_length=255, default='', blank=True, null=True)
+    bio = models.CharField(max_length=255, default='', blank=True)
     date_of_birth = models.DateField(blank=True, null=True)
     sex = models.CharField(max_length=1, choices=SEX, blank=True, null=True)
     followers = models.ManyToManyField(

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery, useMutation } from 'react-query';
 
-import { apiGETQuery, apiGETMutate } from './queryLookup';
+import { apiGETQuery, apiGETMutate } from '../../api/queryLookup';
 
 export const TweetDetail = (props) => {
-    const { userId, tweetId } = props //get from django
+    const { requestUserId, tweetId } = props //get from django
     const { data: tweet, refetch, status} = useQuery(['tweetItem', `tweets/${tweetId}/`], apiGETQuery);
     
     const [like_mutate] = useMutation(apiGETMutate, {
@@ -41,12 +41,19 @@ export const TweetDetail = (props) => {
     }
 
     if(status==="success"){
-        const liked = tweet.liked_by.includes(parseInt(userId, 10));
+        if(tweet.error_message==='not found'){
+            return (
+                <div className="text-center">
+                    <h1>Error 404 : Not Found</h1>
+                </div>
+            )
+        }
+
+        const liked = tweet.liked_by.includes(parseInt(requestUserId, 10));
         let btnClasses = 'h5 text-secondary';
         if(liked){
             btnClasses = 'h5 text-primary';
         }
-
         return (
             <div className="card mb-4">
                 <div className="card-header clickable" onClick={() => handleUserProfileLink(tweet.author.username)}>

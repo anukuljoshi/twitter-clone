@@ -1,13 +1,13 @@
 import React from 'react';
 import { useQuery, useMutation } from 'react-query';
 
-import { apiGETQuery, apiPOSTMutate } from './queryLookup';
+import { apiGETQuery, apiPOSTMutate } from '../../api/queryLookup';
 import { TweetCreate } from './create';
 import { TweetList } from './list';
 import { TweetDetail } from './detail';
 
 export const TweetListComponent = (props) => {
-    const { username, userId } = props;
+    const { requestUserId } = props;
     const { data : tweetList, status, refetch } = useQuery(['tweetListState', 'tweets/'], apiGETQuery);
 
     const [create_mutate] = useMutation(apiPOSTMutate, {
@@ -20,7 +20,7 @@ export const TweetListComponent = (props) => {
             'content' : content
         }
         try {
-            await create_mutate({ endpoint, newTweet })
+            await create_mutate({ endpoint, payload: newTweet })
         } catch (error) {
             console.log('tweet create error');
         }
@@ -44,12 +44,19 @@ export const TweetListComponent = (props) => {
     }
 
     if(status==="success"){
+        if(tweetList.error_message==='not found'){
+            return (
+                <div className="text-center">
+                    <h1>Error 404 : Not Found</h1>
+                </div>
+            )
+        }
         return (
             <div className="col-12 col-md-5 offset-md-2">
                 <>
                     {/* form to create tweet */}
                     { 
-                        (userId) && 
+                        (requestUserId) && 
                         <TweetCreate handleTweetCreate={handleTweetCreate}/>
                     }
 
