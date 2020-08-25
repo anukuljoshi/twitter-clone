@@ -1,13 +1,13 @@
 :root{
     --bgColor : #1a1a2e;
     --fgColor : #16213e;
-	--darkColor : #111b38;
+
     --mainColor : #0f3460;
 
-    --mainTextColor : #d1d1d1;
+    --mainTextColor : #c0c0c0;
     --hoverColor: #ff4a68;
 
-    --textHeaderColor: #fa2549;
+    --textHeaderColor: #ff294c;
     --activeColor : #00ffb3;
     --white : #ffffff;
     --black : #000000
@@ -19,24 +19,12 @@ body, html{
 }
 
 body{
-	margin: 0;
-	padding: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
     /* background: linear-gradient(45deg, #0479ff 0%, #11fb7e 100%); */
     background-color: var(--bgColor);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
 
 p, span{
     color: var(--mainTextColor);
@@ -46,22 +34,19 @@ h1, h2, h3, h4, h5, h6, legend{
     color: var(--textHeaderColor) !important;
 }
 
-.clickable{
-	cursor: pointer;
+.errorlist{
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .link-custom{
-	cursor: pointer;
     font-weight: 500 !important;
     color: var(--textHeaderColor) !important;
 }
 
 .link-custom:hover{
     color: var(--hoverColor) !important;
-}
-
-.text-highlight{
-	color: var(--textHeaderColor) !important;
 }
 
 .btn-custom{
@@ -72,41 +57,10 @@ h1, h2, h3, h4, h5, h6, legend{
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.bg-custom-success{
-    background: rgb(9, 170, 156);
-}
-
-.bg-custom-fail{
-    background: rgb(204, 0, 44);
-}
-
-.bg-custom-dark{
-	background: var(--darkColor);
-}
-
-.user-link{
-	cursor: pointer;
-	color: var(--activeColor) !important;
-}
-
-.user-link:hover{
-	color: aqua !important;
-}
-
-.input-custom, .input-custom:focus{
-	background: transparent;
-	color: var(--mainTextColor);
-	border: 2px solid var(--mainColor);
-    border-radius: 0;
-    box-shadow: none;
-}
-
 .card-custom{
-    background-color: var(--fgColor);
+    background-color: var(--fgColor) !important;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-	color: var(--mainTextColor);
-	border-radius: 0;
-	margin-bottom: 20px;
+    color: var(--mainTextColor);
 }
 
 .form-custom{
@@ -115,12 +69,6 @@ h1, h2, h3, h4, h5, h6, legend{
     margin: auto;
     padding: 40px;
     margin-top: 50px;
-}
-
-.errorlist{
-    list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .login{
@@ -189,82 +137,4 @@ h1, h2, h3, h4, h5, h6, legend{
     box-shadow: none;
     border: none;
     outline: none;
-}
-
-.fixed-div{
-	position: fixed;
-	width: 25vw;
-	margin: auto;
-}
-
-.scroller {
-	height: 100vh;
-	overflow: auto;
-}
-
-.profile{
-	width: 80%;
-	margin: auto;
-	margin-top: 15vh;
-	margin-bottom: 15vh;
-	min-height: 400px;
-}
-
-.profile .profile-header{
-	text-align: center;
-	margin: auto;
-	display: flex;
-	flex-direction: column;
-	height: 200px;
-	padding-top: 40px;
-}
-
-.profile-bio{
-	margin-top: 10px;
-	font-style: italic;
-	font-size: 15px;
-}
-
-.profile ul{
-	margin: 0;
-	padding: 0;
-}
-
-.profile ul li{
-	list-style-type: none;
-	height: 50px;
-	display: flex;
-	padding-right: 30px;
-	justify-content: right;
-	align-items: center;
-}
-
-.profile-links .active{
-	background-color: var(--bgColor);
-	color: var(--activeColor);
-}
-
-.profile-card .card-info{
-	display: flex;
-	justify-content: space-between;
-}
-
-.profile-card-fullname{
-	margin: 0;
-}
-
-.tweet-create-div{
-    position: relative;
-}
-.tweet-create-div span{
-    position: absolute;
-    bottom: 0;
-    right: 15px;
-}
-
-
-@media screen and (max-width: 768px){
-	.fixed-div{
-		display: none;
-	}
 }

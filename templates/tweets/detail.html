@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>TweetDetail</h1>
-
     {% if request.user.is_authenticated %}
         <div id="tweet-detail" data-request-user-id="{{ request.user.id }}" data-tweet-id="{{ tweet_id }}">
         </div>

@@ -131,10 +131,10 @@ DEFAULT_AUTHENTICATION_CLASSES = [
     'rest_framework.authentication.SessionAuthentication'
 ]
 
-# if(DEBUG):
-#     DEFAULT_AUTHENTICATION_CLASSES += [
-#         'twitter_clone.rest_api.dev.DevAuthentication'
-#     ]
+if(DEBUG):
+    DEFAULT_AUTHENTICATION_CLASSES += [
+        'twitter_clone.rest_api.dev.DevAuthentication'
+    ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES' : DEFAULT_AUTHENTICATION_CLASSES,

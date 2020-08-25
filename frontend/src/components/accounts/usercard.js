@@ -17,38 +17,48 @@ export const UserProfileItem = (props) => {
         await follow_mutate({ endpoint })
     }
 
-    let btnClasses = 'btn-primary';
+    const handleUserProfileLink = (username) => {
+        window.location.href = `/${username}`
+    }
+    
+    let btnClasses = 'bg-custom-success';
     let value = 'Follow'
     if(profile.user.id===parseInt(requestUserId, 10)){
         btnClasses = 'd-none'
     }else{
         const followed = profile.followers.includes(parseInt(requestUserId, 10));
         if(followed){
-            btnClasses = 'btn-danger';
+            btnClasses = 'bg-custom-fail';
             value = 'Unfollow';
         }
     }
 
     return (
-        <div className="profile-card mb-3">
-            <div className="profile-card-header">
-                <div className="profile-card-usertitle">
-                    <div className="profile-card-user-full-name">
-                        {`${profile.user.first_name} ${profile.user.last_name}`}
+        <div className="profile-card card card-custom">
+            <div className="card-body">
+                <div className="card-info">
+                    <div>
+                        <h6 className="profile-card-fullname">
+                            {`${profile.user.first_name} ${profile.user.last_name}`}
+                        </h6>
+                        <div className="">
+                            <span className="user-link" onClick={() => handleUserProfileLink(profile.user.username)}>
+                                {`@${profile.user.username}`}
+                            </span>
+                        </div>
                     </div>
-                    <div className="profile-card-user-username">
-                        {`@${profile.user.username}`}
+                    <div>
+                        <button 
+                            className={`${btnClasses} btn-custom`}
+                            onClick={() => handleFollow(profile.user.username)}
+                        >
+                            {`${value}`}
+                        </button>
                     </div>
                 </div>
-                <button 
-                    className={`profile-card-userbutton btn ${btnClasses}`}
-                    onClick={() => handleFollow(profile.user.username)}
-                >
-                    {`${value}`}
-                </button>
-            </div>
-            <div className="profile-card-user-bio">
-                {`${profile.bio}`}
+                <div className="profile-bio">
+                    {`${profile.bio}`}
+                </div>
             </div>
         </div>
     )

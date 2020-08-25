@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>TweetList</h1>
     {% if request.user.is_authenticated %}
         <div id="tweet-list" data-username="{{request.user}}" data-request-user-id="{{ request.user.id }}">
         </div>

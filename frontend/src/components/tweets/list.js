@@ -7,9 +7,9 @@ const TweetItem = (props) => {
     const { tweet, requestUserId, handleLike } = props;
     const liked = tweet.liked_by.includes(parseInt(requestUserId, 10));
     
-    let btnClasses = 'h5 text-secondary';
+    let btnClasses = 'text-secondary';
     if(liked){
-        btnClasses = 'h5 text-primary';
+        btnClasses = 'text-highlight';
     }
 
     const handleTweetDetailLink = (event) => {
@@ -19,25 +19,27 @@ const TweetItem = (props) => {
 
     return (
 
-        <div className="card mb-4">
+        <div className="card card-custom">
             <div className="card-body">
-                <h6 className="card-subtitle mb-2 text-muted">
+                <h6 className="card-subtitle mb-2">
                     { tweet.author.username }
                 </h6>
-                <div className="">
-                    <p className="card-text">
+                <div className="clickable mb-1" onClick={handleTweetDetailLink}>
+                    <p className="card-text py-2 px-1">
                         {tweet.content}
                     </p>
                 </div>
 
-                <span className="mr-2">{`${tweet.liked_by.length}`}</span>
+                <span className={`${btnClasses} mr-2`}>{`${tweet.liked_by.length}`}</span>
                 <span 
-                    className={`${btnClasses} mr-2 clickable`} 
+                    className={`${btnClasses} h5 mr-2 clickable`} 
                     onClick={() => handleLike(tweet.id) }
                 >
                     <i className="fa fa-thumbs-up"></i>
                 </span>
-                <button className="btn btn-sm btn-outline-primary" onClick={handleTweetDetailLink}>View</button>
+                {/* <span className="h5 text-primary clickable" onClick={handleTweetDetailLink}>                
+                    <i className="fa fa-eye"></i>
+                </span> */}
                 <small className="float-right">
                     {tweet.timestamp}
                 </small>

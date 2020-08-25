@@ -13,17 +13,16 @@ export const UserProfileComponent = (props) => {
     const {data: userProfile, status, refetch: userProfileRefetch} = useQuery(['userDetailState', `accounts/${profileUsername}/`], apiGETQuery);
 
     const [content, setContent] = useState('tweets');
-    const listItems = ['tweets', 'followers', 'following'];
+    const listItems = ['update', 'tweets', 'followers', 'following'];
 
     const handleProfileSidebarLink = (value) => {
         setContent(value);
         listItems.forEach(i => {
-            const temp = document.getElementById(`profile-${i}-list`);
+            const temp = document.getElementById(`profile-${i}`);
             temp.classList.remove('active');
         })
-        const item = document.getElementById(`profile-${value}-list`);
+        const item = document.getElementById(`profile-${value}`);
         item.classList.add('active');
-        
     }
 
 

@@ -15,19 +15,24 @@ export const TweetCreate = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <textarea 
-                    name=""
-                    className="form-control" 
-                    id="" 
-                    rows="4"
+        <form onSubmit={handleSubmit} className="mb-4">
+            <div className="tweet-create-div">
+                <textarea
+                    className="form-control input-custom"
+                    rows="3"
                     value={content}
                     onChange={(event) => setContent(event.target.value)}
+                    placeholder="Say something..."
+                    maxLength={255}
                 >    
                 </textarea>
-            <input className="btn btn-primary" type="submit" value="Tweet" />
+                <span>
+                    <small>
+                        {255-content.length}
+                    </small>
+                </span>
             </div>
+            <input className="btn-custom" type="submit" value="Tweet" />
         </form>
     )
 }
