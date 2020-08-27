@@ -46,3 +46,20 @@ export const apiPOSTMutate = async ({ endpoint, payload }) => {
     const data = await res.json();
     return data;
 }
+
+export const apiPUTMutate = async ({ endpoint, payload }) => {
+    const url = `http://127.0.0.1:8000/api/${endpoint}`;
+    const csrftoken = getCookie('csrftoken');
+
+    const config = {
+        'method' : 'PUT',
+        'headers' : {
+            'Content-Type' : 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        'body' : JSON.stringify(payload)
+    }
+    const res = await fetch(url, config);
+    const data = await res.json();
+    return data;
+}

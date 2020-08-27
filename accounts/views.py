@@ -24,6 +24,7 @@ def register_view(request, *args, **kwargs):
             user.first_name = first_name
             user.last_name = last_name
             user.email = email
+            user.save()
             return redirect(reverse('accounts:login'))
         else:
             form.add_error('password', 'Passwords did not match. Try Again')
@@ -58,6 +59,8 @@ def logout_view(request, *args, **kwargs):
 
 
 def user_profile_view(request, username, *args, **kwargs):
+    if(not request.user.is_authenticated):
+        return redirect(reverse('accounts:login'))
     context = {
         'username' : username
     }

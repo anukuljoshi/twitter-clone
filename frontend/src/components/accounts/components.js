@@ -7,6 +7,7 @@ import { UserProfile } from './profile';
 import { ScrollComponent } from '../layout/scroll';
 import { UserTweetList } from './userTweets';
 import { FollowerList, FollowingList  } from './userList';
+import { UpdateProfile } from './profileUpdate'
 
 export const UserProfileComponent = (props) => {
     const { profileUsername, requestUserId } = props
@@ -25,7 +26,6 @@ export const UserProfileComponent = (props) => {
         item.classList.add('active');
     }
 
-
     if(status==="loading"){
         return (
             <div className="text-center">
@@ -41,7 +41,6 @@ export const UserProfileComponent = (props) => {
             </div>
         )
     }
-
 
     if(status==="success"){
         if(userProfile.error_message==='not found'){
@@ -59,7 +58,12 @@ export const UserProfileComponent = (props) => {
                             <UserProfile userProfile={userProfile}  handleProfileSidebarLink={handleProfileSidebarLink} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch}/>
                         </ScrollComponent>
                     </div>
-                    <div className="col-10 col-md-6 mx-auto mt-5">
+                    <div className="col-10 col-md-6 offset-md-3 mt-5">
+                        
+                        {
+                            content==='update' && userProfile.id===parseInt(requestUserId,10) && 
+                            <UpdateProfile profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch}/>
+                        }
 
                         { content==='tweets' && <UserTweetList profileUsername={profileUsername} requestUserId={requestUserId}/> }
 

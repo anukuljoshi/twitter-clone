@@ -43,3 +43,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         user = obj.user
         count = user.user_tweets.all().count()
         return count
+
+
+# class UpdateSerializer(serializers.Serializer):
+#     bio = serializers.CharField()
+#     first_name = serializers.CharField()
+#     last_name = serializers.CharField()

@@ -1,7 +1,6 @@
 from django.urls import path
 
 from .views import (
-    home,
     list_view,
     detail_view,
 )
