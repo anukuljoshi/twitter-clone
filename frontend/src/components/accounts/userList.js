@@ -45,7 +45,10 @@ export const FollowerList = (props) => {
             )
         }
         return (
-            <UserProfileList userProfileList={followers} requestUserId={requestUserId} refetch={refetch} userProfileRefetch={userProfileRefetch} />
+            <div>
+                <h1 className="mb-4">{`${profileUsername}'s Followers`}</h1>
+                <UserProfileList userProfileList={followers} requestUserId={requestUserId} refetch={refetch} userProfileRefetch={userProfileRefetch} />
+            </div>
         )
     }
 }
@@ -73,7 +76,11 @@ export const FollowingList = (props) => {
 
     if(status==="success"){
         return (
-            <UserProfileList userProfileList={following} requestUserId={requestUserId} refetch={refetch} userProfileRefetch={userProfileRefetch} />
+
+            <div>
+                <h1 className="mb-4">{`${profileUsername}'s Following`}</h1>
+                <UserProfileList userProfileList={following} requestUserId={requestUserId} refetch={refetch} userProfileRefetch={userProfileRefetch} />
+            </div>
         )
     }
 }

@@ -34,7 +34,10 @@ export const UserTweetList = (props) => {
             )
         }
         return (
-            <TweetList tweetList={userTweets} refetch={refetch} requestUserId={requestUserId}/>
+            <div>
+                <h1 className="mb-4">{`${profileUsername}'s Tweets`}</h1>
+                <TweetList tweetList={userTweets} refetch={refetch} requestUserId={requestUserId}/>
+            </div>
         )
     }
 }

@@ -52,7 +52,7 @@ export const TweetListComponent = (props) => {
             )
         }
         return (
-            <div className="col-12 col-md-5 offset-md-2">
+            <div className="col-10 col-md-8 col-lg-6 mx-auto">
                 <>
                     {/* form to create tweet */}
                     { 
@@ -71,7 +71,7 @@ export const TweetListComponent = (props) => {
 
 export const TweetDetailComponent = (props) => {
     return (
-        <div className="col-12 col-md-5 offset-md-2">
+        <div className="col-10 col-md-8 col-lg-6 mx-auto">
             <TweetDetail {...props}/>    
         </div>
     )

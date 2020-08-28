@@ -14,16 +14,19 @@ export const UserProfileComponent = (props) => {
     const {data: userProfile, status, refetch: userProfileRefetch} = useQuery(['userDetailState', `accounts/${profileUsername}/`], apiGETQuery);
 
     const [content, setContent] = useState('tweets');
-    const listItems = ['update', 'tweets', 'followers', 'following'];
 
     const handleProfileSidebarLink = (value) => {
         setContent(value);
-        listItems.forEach(i => {
-            const temp = document.getElementById(`profile-${i}`);
-            temp.classList.remove('active');
+        const listElements = document.querySelectorAll('.profile-links ul li');
+        listElements.forEach(element => {
+            element.classList.remove('active')
         })
-        const item = document.getElementById(`profile-${value}`);
-        item.classList.add('active');
+        const element = document.getElementById(`profile-${value}`);
+        element.classList.toggle('active')
+    }
+
+    const toggleProfileComponent = () => {
+        document.getElementById('profile-component').classList.toggle('fixed-div-none')
     }
 
     if(status==="loading"){
@@ -52,24 +55,30 @@ export const UserProfileComponent = (props) => {
         }
         return (
             <div className="container-fluid">
+                <div className="profile-toggle-button" onClick={toggleProfileComponent}>
+                    <span>
+                        <i className="fa fa-user"></i>
+                    </span>
+                </div>
                 <div className="row">
-                    <div className="fixed-div">
+                    <div id="profile-component" className="fixed-div fixed-div-none">
                         <ScrollComponent>
                             <UserProfile userProfile={userProfile}  handleProfileSidebarLink={handleProfileSidebarLink} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch}/>
                         </ScrollComponent>
                     </div>
-                    <div className="col-10 col-md-6 offset-md-3 mt-5">
-                        
-                        {
-                            content==='update' && userProfile.id===parseInt(requestUserId,10) && 
-                            <UpdateProfile profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch}/>
-                        }
+                    <div className="profile-content-div mt-3">
+                        <div className="profile-content">
+                            {
+                                content==='update' && userProfile.id===parseInt(requestUserId,10) && 
+                                <UpdateProfile profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch}/>
+                            }
 
-                        { content==='tweets' && <UserTweetList profileUsername={profileUsername} requestUserId={requestUserId}/> }
+                            { content==='tweets' && <UserTweetList profileUsername={profileUsername} requestUserId={requestUserId}/> }
 
-                        { content==='followers' && <FollowerList profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch} /> }
-                        
-                        { content==='following' && <FollowingList profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch} /> }
+                            { content==='followers' && <FollowerList profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch} /> }
+                            
+                            { content==='following' && <FollowingList profileUsername={profileUsername} requestUserId={requestUserId} userProfileRefetch={userProfileRefetch} /> }
+                        </div>
                     </div>
                 </div>
             </div>

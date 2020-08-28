@@ -11,8 +11,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'g#9hcy^c46nnmz%g+ozr+)l_%9jp2o8pw1#c$0=1_#&mb!$(7l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -132,14 +132,29 @@ DEFAULT_AUTHENTICATION_CLASSES = [
     'rest_framework.authentication.SessionAuthentication'
 ]
 
+DEFAULT_PERMISSION_CLASSES = [
+    'rest_framework.permissions.IsAuthenticated',
+]
+
 # if(DEBUG):
 #     DEFAULT_AUTHENTICATION_CLASSES += [
 #         'twitter_clone.rest_api.dev.DevAuthentication'
 #     ]
+    # DEFAULT_PERMISSION_CLASSES += [
+    #     'rest_framework.permissions.AllowAny',
+    # ]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES' : DEFAULT_AUTHENTICATION_CLASSES,
-    'DATETIME_FORMAT' : '%b %d %Y, %H:%M'
+    'DATETIME_FORMAT' : '%b %d %Y, %H:%M',
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ],
+    'DEFAULT_PERMISSION_CLASSES' : DEFAULT_PERMISSION_CLASSES
 }
 
 

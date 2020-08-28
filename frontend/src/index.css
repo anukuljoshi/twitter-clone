@@ -1,7 +1,7 @@
 :root{
     --bgColor : #1a1a2e;
-    --fgColor : #16213e;
-	--darkColor : #111b38;
+    --fgColor : #111c3a;
+	--darkColor : #101936;
     --mainColor : #0f3460;
 
     --mainTextColor : #d1d1d1;
@@ -9,6 +9,9 @@
 
     --textHeaderColor: #fa2549;
     --activeColor : #00ffb3;
+
+    --followBtnColor : #027a56;
+    --unfollowBtnColor : #b10000;
     --white : #ffffff;
     --black : #000000
 }
@@ -37,10 +40,6 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-
-p, span{
-    color: var(--mainTextColor);
-}
 
 h1, h2, h3, h4, h5, h6, legend{
     color: var(--textHeaderColor) !important;
@@ -72,16 +71,36 @@ h1, h2, h3, h4, h5, h6, legend{
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.text-custom-fail{
+    color: #940000;
+}
+
+.text-custom-success{
+    color: #003b17;
+}
+
 .bg-custom-success{
-    background: rgb(9, 170, 156);
+    background: rgb(119, 233, 172);
 }
 
 .bg-custom-fail{
-    background: rgb(204, 0, 44);
+    background: rgb(255, 194, 192);
+}
+
+.bg-btn-follow{
+    background: var(--followBtnColor);
+}
+
+.bg-btn-unfollow{
+    background: var(--unfollowBtnColor);
 }
 
 .bg-custom-dark{
 	background: var(--darkColor);
+}
+
+.bg-custom-highlight{
+    background: var(--textHeaderColor);
 }
 
 .user-link{
@@ -110,10 +129,12 @@ h1, h2, h3, h4, h5, h6, legend{
 }
 
 .form-custom{
-    width: 350px;
     margin: auto;
     padding: 40px;
-    margin-top: 50px;
+}
+
+.auth-form{
+    width: 350px;
 }
 
 .errorlist{
@@ -191,9 +212,13 @@ h1, h2, h3, h4, h5, h6, legend{
 }
 
 .fixed-div{
-	position: fixed;
-	width: 25vw;
-	margin: auto;
+    position: fixed;
+    width: 30vw;
+    min-width: 250px;
+    max-width: 320px;
+    margin: auto;
+    z-index: 5;
+    background: var(--bgColor);
 }
 
 .scroller {
@@ -205,19 +230,16 @@ h1, h2, h3, h4, h5, h6, legend{
     width: 85%;
 	margin: auto;
 	margin-top: 10vh;
-	margin-bottom: 15vh;
-	min-height: 400px;
+    margin-bottom: 25vh;
+    height: fit-content;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
 
 .profile .profile-header{
 	text-align: center;
-	margin: auto;
-	display: flex;
-	flex-direction: column;
-	height: 200px;
-	padding-top: 40px;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin: auto;
+    padding: 15px;
 }
 
 .profile-bio{
@@ -267,8 +289,48 @@ h1, h2, h3, h4, h5, h6, legend{
     width: 100%;
 }
 
+.profile-toggle-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--textHeaderColor);
+    font-size: x-large;
+    cursor: pointer;
+    color: rgb(226, 226, 226);
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    z-index: 10;
+    display: none;
+}
+
+.profile-content-div{
+    margin: auto;
+    margin-left: 30vw;
+    width: 70%;
+}
+
+.profile-content-div .profile-content{
+    width: 90%;
+    margin: auto;
+}
+
 @media screen and (max-width: 768px){
-	.fixed-div{
+	.fixed-div-none{
 		display: none;
-	}
+    }
+    .profile-toggle-button{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    .profile-content-div{
+        margin: auto;
+        width: 100%;
+    }
+    .auth-form{
+        width: 80%;
+        margin: auto;
+    }
 }

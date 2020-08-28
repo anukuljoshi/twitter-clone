@@ -21,14 +21,14 @@ export const UserProfileItem = (props) => {
         window.location.href = `/${username}`
     }
     
-    let btnClasses = 'bg-custom-success';
+    let btnClasses = 'bg-btn-follow';
     let value = 'Follow'
     if(profile.user.id===parseInt(requestUserId, 10)){
         btnClasses = 'd-none'
     }else{
         const followed = profile.followers.includes(parseInt(requestUserId, 10));
         if(followed){
-            btnClasses = 'bg-custom-fail';
+            btnClasses = 'bg-btn-unfollow';
             value = 'Unfollow';
         }
     }

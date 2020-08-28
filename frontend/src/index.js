@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { TweetListComponent } from './components/tweets/components'
 import { TweetDetailComponent } from './components/tweets/components';
 import { UserProfileComponent } from './components/accounts/components';
+// import { PopupMessage } from './components/layout/popup';
 
 // ReactDOM.render(
 // 	<React.StrictMode>
@@ -32,7 +33,6 @@ if(userProfileDiv){
 	const UserProfileElement = React.createElement(UserProfileComponent, userProfileDiv.dataset)
 	ReactDOM.render(UserProfileElement, userProfileDiv)
 }
-
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

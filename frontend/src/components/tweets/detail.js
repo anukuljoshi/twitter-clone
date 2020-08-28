@@ -56,7 +56,7 @@ export const TweetDetail = (props) => {
         }
         return (
             <div className="card mb-4 card-custom">
-                <div className="card-header px-3 py-2 clickable bg-custom-dark" onClick={() => handleUserProfileLink(tweet.author.username)}>
+                <div className="card-header px-3 py-1 clickable bg-custom-dark" onClick={() => handleUserProfileLink(tweet.author.username)}>
                     <h5>{ tweet.author.username }</h5>
                 </div>
                 <div className="card-body">

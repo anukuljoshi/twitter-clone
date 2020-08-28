@@ -54,7 +54,6 @@ def api_user_profile_update_view(request, username, *args, **kwargs):
         if(profile):
             if(profile.user==request.user):
                 profile_user = User.objects.filter(username=username).first()
-                print(request.data)
                 if('first_name' in request.data):
                     profile_user.first_name = request.data['first_name']
                 if('last_name' in request.data):
@@ -63,8 +62,7 @@ def api_user_profile_update_view(request, username, *args, **kwargs):
                 if('bio' in request.data):
                     profile.bio = request.data['bio']
                 profile.save()
-                serializer = ProfileSerializer(instance=profile)
-                return Response(serializer.data, status.HTTP_200_OK)
+                return Response({"success_message" : "Updated Successfully"}, status.HTTP_200_OK)
             return Response({"error_message" : "not allowed"}, status.HTTP_401_UNAUTHORIZED)
         return Response({"error_message" : "not found"}, status.HTTP_404_NOT_FOUND)
 

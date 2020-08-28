@@ -1,17 +1,17 @@
 
 {% if form.errors %}
-    <div class="alert alert-danger alert-dismissible col-12 mx-1 bg-custom-fail" role="alert">
+    <div class="alert col-12 mx-1 bg-custom-fail">
         <div id="form_errors">
             {% for key, value in form.errors.items %}
-                <span class="fieldWrapper">
+                <span class="text-custom-success">
                     {% autoescape on %}
                         {{ value }}
                     {% endautoescape %}
                 </span>
             {% endfor %}
         </div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+        <button type="button" class="close" >
+            <span class="text-custom-success">&times;</span>
         </button>
     </div>
 {% endif %}

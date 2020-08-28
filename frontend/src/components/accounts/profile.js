@@ -16,7 +16,7 @@ export const UserProfile = (props) => {
         await follow_mutate({ endpoint })
     }
 
-    let btnClasses = 'bg-custom-success';
+    let btnClasses = 'bg-btn-follow';
     let value = 'Follow'
     let isRequestUserProfile = false;
     if(userProfile.user.id===parseInt(requestUserId, 10)){
@@ -25,7 +25,7 @@ export const UserProfile = (props) => {
     }else{
         const followed = userProfile.followers.includes(parseInt(requestUserId, 10));
         if(followed){
-            btnClasses = 'bg-custom-fail';
+            btnClasses = 'bg-btn-unfollow';
             value = 'Unfollow';
         }
     }
