@@ -7,3 +7,4 @@ Django Rest Framework
 
 Frontend:
 React
+React-Query
